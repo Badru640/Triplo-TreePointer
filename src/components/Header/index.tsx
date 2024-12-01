@@ -1,9 +1,9 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"; // Importa hooks necessários
-import { FiMenu, FiBell } from "react-icons/fi"; // Importa apenas os ícones necessários
-import { motion } from "framer-motion"; // Importa framer-motion para animações
-import Link from "next/link"; // Importa o Link do Next.js
+import { useState, useEffect, useRef } from "react";
+import { FiMenu, FiBell } from "react-icons/fi"; 
+import { motion } from "framer-motion"; 
+import Link from "next/link"; 
 
 export const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
@@ -29,7 +29,7 @@ export const Header = () => {
 
   return (
     <div className="relative">
-      <header className="bg-red-500 p-4 flex items-center justify-between">
+      <header className="bg-sky-400  p-4 flex items-center justify-between">
         <div className="flex items-center">
           <FiMenu
             size={25}
@@ -37,8 +37,10 @@ export const Header = () => {
             className="cursor-pointer"
           />
         </div>
-
+<div className="flex">
+<img src="/path-to-your-logo.png" alt="Logo" className="w-8 mr-2 h-8 object-contain" />
         <h1 className="font-extrabold text-xl">Triplo-3Pointer</h1>
+</div>
 
         <div className="flex items-center space-x-4">
           <FiBell className="text-2xl" />
