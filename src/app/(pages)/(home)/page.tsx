@@ -26,6 +26,9 @@ const Home = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Estado para armazenar a posição inicial do toque
+  const [touchStart, setTouchStart] = useState(0);
+
   // Função para navegar para a imagem anterior
   const prevImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
@@ -63,6 +66,31 @@ const Home = () => {
     }
   };
 
+  // Funções para detectar swipe com o dedo
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touchStartPosition = e.touches[0].clientX;
+    setTouchStart(touchStartPosition);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStart) return;
+
+    const touchMovePosition = e.touches[0].clientX;
+    const touchDiff = touchStart - touchMovePosition;
+
+    if (touchDiff > 50) {
+      nextImage(); // Swipe para a esquerda
+      setTouchStart(0); // Resetar a posição do toque
+    } else if (touchDiff < -50) {
+      prevImage(); // Swipe para a direita
+      setTouchStart(0); // Resetar a posição do toque
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setTouchStart(0); // Resetar a posição do toque ao finalizar
+  };
+
   return (
     <main>
       <Header />
@@ -78,6 +106,9 @@ const Home = () => {
               transform: `translateX(-${currentIndex * 100}%)`, // Controlar a transição das imagens
             }}
             onWheel={handleWheel} // Adiciona o evento de scroll
+            onTouchStart={handleTouchStart} // Detecta o início do toque
+            onTouchMove={handleTouchMove} // Detecta o movimento do toque
+            onTouchEnd={handleTouchEnd} // Finaliza o movimento do toque
           >
             {images.map((image, index) => (
               <div key={index} className="w-full h-screen flex-shrink-0">
