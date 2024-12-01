@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Header } from "@/components/Header";
 import Link from "next/link";
 
@@ -24,9 +24,13 @@ const images = [
 
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Função para navegar para a imagem anterior
-  
+  const prevImage = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+  };
+
   // Função para navegar para a próxima imagem
   const nextImage = () => {
     setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
@@ -41,25 +45,39 @@ const Home = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       nextImage(); // Trocar para a próxima imagem
-    }, 5000); // Mudar a cada 3 segundos
+    }, 5000); // Mudar a cada 5 segundos
 
     return () => clearInterval(intervalId); // Limpar intervalo quando o componente for desmontado
   }, []);
 
+  // Função para lidar com o evento de rolagem do mouse
+  const handleWheel = (e: React.WheelEvent) => {
+    // Impedir o comportamento padrão da rolagem (como rolar a página)
+    e.preventDefault();
+
+    // Detectar a rotação vertical
+    if (e.deltaY > 0) {
+      nextImage(); // Se a rolagem for para baixo (deltaY positivo), vai para a próxima imagem
+    } else {
+      prevImage(); // Se a rolagem for para cima (deltaY negativo), vai para a imagem anterior
+    }
+  };
+
   return (
     <main>
       <Header />
-     
 
       {/* Slider de Imagens com Transição Suave */}
-      <section className="relative py- px-0">
-        <div className="relative w-full h-screen overflow-hidden ">
+      <section className="relative py-0 px-0">
+        <div className="relative w-full h-screen overflow-hidden">
           {/* Contêiner que segura as imagens */}
           <div
-            className="  flex transition-transform duration-700 ease-in-out"
+            ref={containerRef}
+            className="flex transition-transform duration-700 ease-in-out"
             style={{
               transform: `translateX(-${currentIndex * 100}%)`, // Controlar a transição das imagens
             }}
+            onWheel={handleWheel} // Adiciona o evento de scroll
           >
             {images.map((image, index) => (
               <div key={index} className="w-full h-screen flex-shrink-0">
@@ -68,16 +86,13 @@ const Home = () => {
                     <img
                       src={image.src}
                       alt={image.alt}
-                      className="w-full h-full h-fit  object-cover"
+                      className="w-full h-full h-fit object-cover"
                     />
                   </div>
                 </Link>
               </div>
             ))}
           </div>
-         
-
-         
         </div>
 
         {/* Indicadores de Navegação (bolinhas) */}
@@ -91,18 +106,19 @@ const Home = () => {
           ))}
         </div>
       </section>
-       {/* Seção de Introdução */}
-       <section className="py-16 px-4 text-center ">
-        <h1 className="text-3xl animate-bounce font-bold mb-4">
-          Bem-vindo ao Tri-ploThreePointer
+
+      {/* Seção de Introdução */}
+      <section className="py-16 px-4 text-center">
+        <h1 className="text-2xl md:text-3xl animate-bounce font-bold mb-4">
+          Bem-vindo ao
         </h1>
-        <p className="text-lg  max-w-2xl mx-auto">
-        O Tri-plo ThreePointer é o seu portal de referência para o basquetebol moçambicano! Criado com o objetivo de promover o Desporto e destacar talentos nacionais, nosso site combina informações, rankings, serviços de treinamento e muito mais, consolidando-se como a principal plataforma de visibilidade para atletas e equipes.
+        <h1 className="text-2xl md:text-3xl animate-bounce font-bold mb-4">
+          Tri-ploThreePointer
+        </h1>
+        <p className="text-lg max-w-2xl mx-auto">
+          O Tri-plo ThreePointer é o seu portal de referência para o basquetebol moçambicano! Criado com o objetivo de promover o Desporto e destacar talentos nacionais, nosso site combina informações, rankings, serviços de treinamento e muito mais, consolidando-se como a principal plataforma de visibilidade para atletas e equipes.
         </p>
       </section>
-       <div className="h-screen">
-            olaa
-          </div>
     </main>
   );
 };
