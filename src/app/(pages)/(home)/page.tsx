@@ -48,7 +48,7 @@ const Home = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       nextImage(); // Trocar para a próxima imagem
-    }, 5000); // Mudar a cada 5 segundos
+    }, 10000); // Mudar a cada 5 segundos
 
     return () => clearInterval(intervalId); // Limpar intervalo quando o componente for desmontado
   }, []);
