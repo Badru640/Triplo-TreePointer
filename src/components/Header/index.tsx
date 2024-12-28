@@ -75,7 +75,7 @@ export const Header = () => {
               </li>
               <li>
                 <Link href="/about" passHref className="block text-lg py-2 hover:text-blue-400 transition-all duration-300 ease-in-out">
-                sobre
+                Sobre Mim
                 </Link>
               </li>
               <li>

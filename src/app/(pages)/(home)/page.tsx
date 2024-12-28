@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Header } from "@/components/Header";
 import Link from "next/link";
+import Image from "next/image";
 
 const images = [
   {
@@ -113,13 +114,17 @@ const Home = () => {
             {images.map((image, index) => (
               <div key={index} className="w-full h-screen flex-shrink-0">
                 <Link href={image.link}>
-                  <div className="w-full h-full">
-                    <img
+                  <div className="w-full h-full relative">
+                    <Image
                       src={image.src}
                       alt={image.alt}
-                      className="w-full h-full h-fit object-cover"
+                      className="object-cover"
+                      fill // O atributo "fill" faz com que a imagem ocupe todo o contêiner pai.
+                      sizes="100vw" // Ajusta o comportamento responsivo.
+                      priority={true} // Opcional: carrega a imagem com prioridade (melhor para imagens acima da dobra).
                     />
                   </div>
+
                 </Link>
               </div>
             ))}
@@ -150,6 +155,24 @@ const Home = () => {
           O Tri-plo ThreePointer é o seu portal de referência para o basquetebol moçambicano! Criado com o objetivo de promover o Desporto e destacar talentos nacionais, nosso site combina informações, rankings, serviços de treinamento e muito mais, consolidando-se como a principal plataforma de visibilidade para atletas e equipes.
         </p>
       </section>
+
+      {/* Card clicável */}
+      <Link href="/about">
+        <div className="cursor-pointer  flex flex-col items-center bg-gray-50 dark:bg-gray-950 shadow-lg rounded-xl py-6 px-6 hover:shadow-lg mb-4 transition-shadow">
+          <Image
+            src="https://scontent.fmpm3-1.fna.fbcdn.net/v/t39.30808-6/468846039_4033283653624929_4331618050864958601_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=j9q9mAi3Qy4Q7kNvgGM5TR7&_nc_zt=23&_nc_ht=scontent.fmpm3-1.fna&_nc_gid=AkOcjaiPykgd8EXithZCODP&oh=00_AYAJHAvxs4AyLIIWX_SHHjQMnVF-FZRnOFhfbZQm1oOBkA&oe=67753672"
+            alt="Casimiro Sidny Mapanguelane Mondlane"
+            className="rounded-full mx-auto mb-4 border-4 border-gray-200 shadow-lg cursor-pointer"
+            width={128}
+            height={128}
+          />
+          <h2 className="text-2xl font-semibold text-center">Sobre Mim</h2>
+          <p className="text-gray-600 dark:text-gray-400 text-center mt-2">
+           Clique e Saiba mais sobre - The Coach 9.
+          </p>
+        </div>
+      </Link>
+
     </main>
   );
 };
