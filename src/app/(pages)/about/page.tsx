@@ -109,14 +109,14 @@ const About = () => {
             {/* Modal para imagem ampliada */}
             {isModalOpen && (
                 <div
-                    className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50"
+                    className="fixed inset-0 flex p-2 items-center justify-center bg-black bg-opacity-80 z-50"
                     onClick={handleCloseModal}
                 >
                     <div className="relative">
                         <Image
                             src="https://scontent.fmpm3-1.fna.fbcdn.net/v/t39.30808-6/468846039_4033283653624929_4331618050864958601_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=j9q9mAi3Qy4Q7kNvgGM5TR7&_nc_zt=23&_nc_ht=scontent.fmpm3-1.fna&_nc_gid=AkOcjaiPykgd8EXithZCODP&oh=00_AYAJHAvxs4AyLIIWX_SHHjQMnVF-FZRnOFhfbZQm1oOBkA&oe=67753672"
                             alt="Casimiro Sidny Mapanguelane Mondlane"
-                            className="rounded-lg shadow-xl"
+                            className="rounded-3xl p-2 shadow-xl"
                             width={512}
                             height={512}
                         />
