@@ -3,6 +3,9 @@ import { useState, useEffect, useRef } from "react";
 import { Header } from "@/components/Header";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { FaBasketballBall, FaClock, FaMapMarkerAlt } from "react-icons/fa";
+
 
 const images = [
   {
@@ -49,7 +52,7 @@ const Home = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       nextImage(); // Trocar para a próxima imagem
-    }, 10000); // Mudar a cada 5 segundos
+    }, 5000); // Mudar a cada 5 segundos
 
     return () => clearInterval(intervalId); // Limpar intervalo quando o componente for desmontado
   }, []);
@@ -113,34 +116,35 @@ const Home = () => {
           >
             {images.map((image, index) => (
               <div key={index} className="w-full h-screen flex-shrink-0">
-                <Link href={image.link}>
-                  <div className="w-full h-full relative">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      className="object-cover"
-                      fill // O atributo "fill" faz com que a imagem ocupe todo o contêiner pai.
-                      sizes="100vw" // Ajusta o comportamento responsivo.
-                      priority={true} // Opcional: carrega a imagem com prioridade (melhor para imagens acima da dobra).
-                    />
-                  </div>
 
-                </Link>
+                <div className="w-full h-full relative">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    className="object-cover"
+                    fill // O atributo "fill" faz com que a imagem ocupe todo o contêiner pai.
+                    sizes="100vw" // Ajusta o comportamento responsivo.
+                    priority={true} // Opcional: carrega a imagem com prioridade (melhor para imagens acima da dobra).
+                  />
+                </div>
+
+
               </div>
             ))}
           </div>
         </div>
 
         {/* Indicadores de Navegação (bolinhas) */}
-        <div className="flex justify-center space-x-2 mt-4">
+        <div className="absolute top-6 left-1/2 transform -translate-x-1/2 flex space-x-3">
           {images.map((_, index) => (
             <button
               key={index}
               onClick={() => goToImage(index)}
-              className={`w-3 h-3 rounded-full ${currentIndex === index ? 'bg-blue-500' : 'bg-gray-400'} transition-all`}
+              className={`w-6 h-6 rounded-full ${currentIndex === index ? 'bg-blue-500' : 'bg-white'} transition-all`}
             />
           ))}
         </div>
+
       </section>
 
       {/* Seção de Introdução */}
@@ -155,10 +159,37 @@ const Home = () => {
           O Tri-plo ThreePointer é o seu portal de referência para o basquetebol moçambicano! Criado com o objetivo de promover o Desporto e destacar talentos nacionais, nosso site combina informações, rankings, serviços de treinamento e muito mais, consolidando-se como a principal plataforma de visibilidade para atletas e equipes.
         </p>
       </section>
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.98 }}
+        className="bg-gradient-to-r from-blue-600 to-indigo-800 text-white sm:rounded-xl shadow-xl p-6 w-full max-w-lg mx-auto mt-8 flex flex-col mb-10 items-center"
+      >
+        <div className="flex items-center space-x-4">
+          <FaBasketballBall className="text-4xl animate-bounce" />
+          <h2 className="text-2xl font-bold">Próximo Jogo</h2>
+        </div>
+
+        <p className="mt-4 text-lg flex items-center">
+          <FaClock className="mr-2" /> 20:00 - 12 de Fevereiro
+        </p>
+        <p className="mt-2 text-lg flex items-center">
+          <FaMapMarkerAlt className="mr-2" /> Estádio Nacional do Zimpeto
+        </p>
+
+        <Link href="/jogos">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            className="mt-6 bg-white text-blue-600 hover:bg-gray-200 transition-all duration-300 px-6 py-3 text-lg font-semibold rounded-full shadow-lg"
+          >
+            Ver Jogos Anteriores
+          </motion.button>
+        </Link>
+      </motion.div>
 
       {/* Card clicável */}
       <Link href="/about">
-        <div className="cursor-pointer  flex flex-col items-center bg-gray-50 dark:bg-gray-950 shadow-lg rounded-xl py-6 px-6 hover:shadow-lg mb-4 transition-shadow">
+        <div className="cursor-pointer  flex flex-col items-center bg-gray-50 dark:bg-gray-950 shadow-lg rounded-xl py-6 px-6 hover:shadow-lg mb-4 sm:mb-0 transition-shadow">
           <Image
             src="https://scontent.fdel27-1.fna.fbcdn.net/v/t39.30808-6/468846039_4033283653624929_4331618050864958601_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=5YXx_x5Ft6YQ7kNvgH9vtwK&_nc_oc=AdgHV0b4RzfckcMtuPm4sYpqmthRVvERxRVmR-dc50003fOff5vHnItuBNErgHVd9WLzDlwmjTpOEVVu_M0sxuTw&_nc_zt=23&_nc_ht=scontent.fdel27-1.fna&_nc_gid=AvjNXoOFUP3zDt0YUFDnwvx&oh=00_AYBSSCFyFyE7-MkZnGZypDsSDpqQrwt5v4L5X852rmblBQ&oe=67B16AF2"
             alt="Casimiro Sidny Mapanguelane Mondlane"
@@ -168,7 +199,7 @@ const Home = () => {
           />
           <h2 className="text-2xl font-semibold text-center">Sobre Mim</h2>
           <p className="text-gray-600 dark:text-gray-400 text-center mt-2">
-           Clique e Saiba mais sobre - The Coach 9.
+            Clique e Saiba mais sobre - The Coach 9.
           </p>
         </div>
       </Link>

@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "scontent.fmpm3-1.fna.fbcdn.net",
+        hostname: "**.fbcdn.net", // Permite qualquer subdomínio do Facebook CDN
       },
       {
         protocol: "https",
@@ -23,10 +23,6 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "lance.co.mz",
-      },
-      {
-        protocol: "https",
-        hostname: "scontent.fdel27-1.fna.fbcdn.net", 
       },
     ],
   },

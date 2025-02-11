@@ -1,29 +1,27 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image"; // Import the Image component from Next.js
-import { useRouter } from "next/navigation"; // Correct import for next/navigation
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
 import { ArrowLeftIcon } from "@heroicons/react/16/solid";
 
 const About = () => {
-    const router = useRouter(); // Hook para navegação
-    const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar o modal
+    const router = useRouter();
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // Função para voltar à página anterior
     const handleGoBack = () => {
         router.back();
     };
 
-    // Função para abrir o modal
     const handleImageClick = () => {
         setIsModalOpen(true);
     };
 
-    // Função para fechar o modal
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
+    const imageUrl = "https://scontent.fdel27-1.fna.fbcdn.net/v/t39.30808-6/468846039_4033283653624929_4331618050864958601_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=5YXx_x5Ft6YQ7kNvgH9vtwK&_nc_oc=AdgHV0b4RzfckcMtuPm4sYpqmthRVvERxRVmR-dc50003fOff5vHnItuBNErgHVd9WLzDlwmjTpOEVVu_M0sxuTw&_nc_zt=23&_nc_ht=scontent.fdel27-1.fna&_nc_gid=AvjNXoOFUP3zDt0YUFDnwvx&oh=00_AYBSSCFyFyE7-MkZnGZypDsSDpqQrwt5v4L5X852rmblBQ&oe=67B16AF2";
 
     return (
         <div>
@@ -41,13 +39,14 @@ const About = () => {
                 <header className="text-center mb-12">
                     {/* Imagem com funcionalidade de modal */}
                     <Image
-                        src="https://scontent.fmpm3-1.fna.fbcdn.net/v/t39.30808-6/468846039_4033283653624929_4331618050864958601_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=j9q9mAi3Qy4Q7kNvgGM5TR7&_nc_zt=23&_nc_ht=scontent.fmpm3-1.fna&_nc_gid=AkOcjaiPykgd8EXithZCODP&oh=00_AYAJHAvxs4AyLIIWX_SHHjQMnVF-FZRnOFhfbZQm1oOBkA&oe=67753672"
+                        src={imageUrl}
                         alt="Casimiro Sidny Mapanguelane Mondlane"
-                        className="rounded-full mx-auto mb-4 border-4 border-gray-200 shadow-lg cursor-pointer animate-pulse "
+                        className="rounded-full mx-auto mb-4 border-4 border-gray-200 shadow-lg cursor-pointer animate-pulse"
                         width={128}
                         height={128}
                         onClick={handleImageClick}
                     />
+
                     <h1 className="text-4xl font-semibold">Sobre Mim</h1>
                     <p className="text-xl">Casimiro Sidny Mapanguelane Mondlane - The Coach 9</p>
                 </header>
@@ -114,7 +113,7 @@ const About = () => {
                 >
                     <div className="relative">
                         <Image
-                            src="https://scontent.fmpm3-1.fna.fbcdn.net/v/t39.30808-6/468846039_4033283653624929_4331618050864958601_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=j9q9mAi3Qy4Q7kNvgGM5TR7&_nc_zt=23&_nc_ht=scontent.fmpm3-1.fna&_nc_gid=AkOcjaiPykgd8EXithZCODP&oh=00_AYAJHAvxs4AyLIIWX_SHHjQMnVF-FZRnOFhfbZQm1oOBkA&oe=67753672"
+                            src={imageUrl}
                             alt="Casimiro Sidny Mapanguelane Mondlane"
                             className="rounded-3xl p-2 shadow-xl"
                             width={512}

@@ -37,8 +37,10 @@ export const Header = () => {
         <FiMenu size={25} onClick={() => setSidebarOpen(!sidebarOpen)} className="cursor-pointer" />
 
         <div className="flex">
-          <Image src="/logo.png" alt="Logo" width={32} height={32} className="w-8 mr-2 h-8 object-contain" />
-          <h1 className="font-extrabold text-xl">Triplo-3Pointer</h1>
+          <Image src="https://scontent.fdel27-4.fna.fbcdn.net/v/t39.30808-6/469125680_4033284073624887_6050273715200359634_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=Y2SEQ1PqTU4Q7kNvgGxk7S7&_nc_oc=Adj4Jw8vxMHrFRqtzLx7ErphXJvCTQVt_xMBzfPPvwC_M7Nt22UOEx9y6_8RoZA66O6WdkWD5W9NbyLGXBNQpfdr&_nc_zt=23&_nc_ht=scontent.fdel27-4.fna&_nc_gid=AHzbWlK2_nXrojRj7drKCVO&oh=00_AYD3EdrA0cFyba9hFACuXirml1dIzWdlkgTz4m_Rnt1cUg&oe=67B1A651" alt="Logo" width={100} height={100} className="w-8 mr-2 rounded-full h-8 object-cover" />
+          <h1 className="font-extrabold text-xl cursor-pointer"
+          onClick={() => setSidebarOpen(!sidebarOpen)} 
+          >Triplo-3Pointer</h1>
         </div>
 
         <FiBell className="text-2xl" />
