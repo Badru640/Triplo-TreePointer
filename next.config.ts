@@ -18,7 +18,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "media.wired.com", // Adicionado domínio media.wired.com
+        hostname: "media.wired.com",
+      },
+      {
+        protocol: "https",
+        hostname: "lance.co.mz",
       },
     ],
   },
