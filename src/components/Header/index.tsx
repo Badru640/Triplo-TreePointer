@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { FiMenu, FiBell } from "react-icons/fi";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 export const Header = () => {
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(false);
@@ -17,18 +18,18 @@ export const Header = () => {
     { label: "Configurações", href: "/configuracoes" },
   ];
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node) && sidebarOpen) {
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
       setSidebarOpen(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [handleClickOutside]);
 
   return (
     <div className="relative">
@@ -36,7 +37,7 @@ export const Header = () => {
         <FiMenu size={25} onClick={() => setSidebarOpen(!sidebarOpen)} className="cursor-pointer" />
 
         <div className="flex">
-          <img src="/" alt="Logo" className="w-8 mr-2 h-8 object-contain" />
+          <Image src="/logo.png" alt="Logo" width={32} height={32} className="w-8 mr-2 h-8 object-contain" />
           <h1 className="font-extrabold text-xl">Triplo-3Pointer</h1>
         </div>
 
