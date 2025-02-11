@@ -160,7 +160,7 @@ const Home = () => {
       <Link href="/about">
         <div className="cursor-pointer  flex flex-col items-center bg-gray-50 dark:bg-gray-950 shadow-lg rounded-xl py-6 px-6 hover:shadow-lg mb-4 transition-shadow">
           <Image
-            src="https://scontent.fmpm3-1.fna.fbcdn.net/v/t39.30808-6/468846039_4033283653624929_4331618050864958601_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=j9q9mAi3Qy4Q7kNvgGM5TR7&_nc_zt=23&_nc_ht=scontent.fmpm3-1.fna&_nc_gid=AkOcjaiPykgd8EXithZCODP&oh=00_AYAJHAvxs4AyLIIWX_SHHjQMnVF-FZRnOFhfbZQm1oOBkA&oe=67753672"
+            src="https://scontent.fdel27-1.fna.fbcdn.net/v/t39.30808-6/468846039_4033283653624929_4331618050864958601_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=5YXx_x5Ft6YQ7kNvgH9vtwK&_nc_oc=AdgHV0b4RzfckcMtuPm4sYpqmthRVvERxRVmR-dc50003fOff5vHnItuBNErgHVd9WLzDlwmjTpOEVVu_M0sxuTw&_nc_zt=23&_nc_ht=scontent.fdel27-1.fna&_nc_gid=AvjNXoOFUP3zDt0YUFDnwvx&oh=00_AYBSSCFyFyE7-MkZnGZypDsSDpqQrwt5v4L5X852rmblBQ&oe=67B16AF2"
             alt="Casimiro Sidny Mapanguelane Mondlane"
             className="rounded-full mx-auto mb-4 border-4 border-gray-200 shadow-lg cursor-pointer"
             width={128}
