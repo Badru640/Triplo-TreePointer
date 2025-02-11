@@ -1,15 +1,13 @@
 "use client";
 
 import { GameData } from "@/types/gamedata";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 interface GameDataProviderProps {
   onDataLoaded: (data: GameData[]) => void;
 }
 
 const GameDataProvider: React.FC<GameDataProviderProps> = ({ onDataLoaded }) => {
-  const [games, setGames] = useState<GameData[]>([]);
-
   useEffect(() => {
     const sampleGames: GameData[] = [
       {
@@ -34,14 +32,12 @@ const GameDataProvider: React.FC<GameDataProviderProps> = ({ onDataLoaded }) => 
       },
     ];
 
-    // Ordena os jogos por data (do mais recente para o mais antigo)
     const sortedGames = sampleGames.sort((a, b) => b.date.getTime() - a.date.getTime());
 
-    setGames(sortedGames);
     onDataLoaded(sortedGames);
   }, [onDataLoaded]);
 
-  return null; // Esse componente apenas fornece dados
+  return null;
 };
 
 export default GameDataProvider;
